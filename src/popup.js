@@ -1,9 +1,10 @@
+
 function readHTML(new_url){
     var value;
-    $.ajax({
+    value = $.ajax({
     type: "GET",
     url: "http://music.baidu.com/data/music/fmlink?songIds=966991&type=flac",
-    dataType:'JSONP',
+    dataType:'JSON',
     error: function(data)
     {
         alert(data);
@@ -11,12 +12,23 @@ function readHTML(new_url){
     success : function(data)
     {
         value = data;
-        alert(k.data.songList[0].songLink);
+        //alert(value.data.songList[0].songLink);
+        var name = value.data.songList[0].songName;
+        var author = value.data.songList[0].artistName;
+        var link = value.data.songList[0].showLink;
+        x = document.getElementById("name");
+        x.innerHTML = name;
+        y = document.getElementById("author");
+        y.innerHTML = author;
+        z = document.getElementById("down");
+        z.innerHTML = link; 
     }
     });
-    return value;
+    
+    //return value;
 }
 
+/*
 function parseHtml(html)
 {
     var name = html.data.songList[0].songName;
@@ -31,11 +43,13 @@ function parseHtml(html)
 
 }
 
+*/
+
 function getMusicAddr(id)
 {        
     var high_url = "http://music.baidu.com/data/music/fmlink?songIds=" + id + "&type=flac"; 
     html = readHTML(high_url);
-    parseHtml(html);         
+    //parseHtml(html);         
     
 }
 
