@@ -2,7 +2,7 @@
     "name": "BDMusicDownloader",
     "description": "百度无损音乐下载插件",
     "version": "1.0",
-    "permissions": "http://music.baidu.com/*",
+    "permissions": ["tabs","http://music.baidu.com/*"],
     "content_security_policy": "script-src 'unsafe-eval'; object-src 'self'",
     "browser_action":{
         "default_title": "Love Music",
