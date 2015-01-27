@@ -2,19 +2,51 @@
 <html>
 	<head>
     <title>百度无损音乐下载</title>
+    <style type="text/css">
+    .id{
+    color: #999;
+    width: 150px;
+    height: 120px;
+    font-size: 14px;
+    }
+    song{
+    color: #2d64b3;
+    width: 12px;
+    height: 12px;
+    font-size: 22px;
+    font-weight: bold;
+    }
+    name{
+    color: #2d64b3;
+    width: 12px;
+    height: 12px;
+    font-size: 14px;
+    }
+    rate{
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    width: 12px;
+    height: 12px;
+    
+    }
+    </style>
     <script src="jquery.js"></script>
     <script src="popup.js"></script>
     </head>
-     	
+    
     <body>
-        <div bo>
-         歌曲：<p id="name">
-         </p>
-         歌手：<p id="author">
-         </p>
-         下载：<p id = "down">
-         </p>
-        </div>  	
+        <div>
+          <span>歌曲：</span><p id="name"> </p>
+        </div>
+        <div>
+          <span>品质：</span>
+        </div>
+        <div>
+  	    <p id="standard"> </p>
+        <p id="high"> </p>
+        <p id="ultimate"></p>
+        <div >
      </body>
 </html>
     
