@@ -3,7 +3,7 @@ function readHTML(new_url){
     var value;
     value = $.ajax({
     type: "GET",
-    url: "http://music.baidu.com/data/music/fmlink?songIds=966991&type=flac",
+    url: new_url,
     dataType:'JSON',
     error: function(data)
     {
@@ -12,23 +12,13 @@ function readHTML(new_url){
     success : function(data)
     {
         value = data;
-        //alert(value.data.songList[0].songLink);
-        var name = value.data.songList[0].songName;
-        var author = value.data.songList[0].artistName;
-        var link = value.data.songList[0].showLink;
-        x = document.getElementById("name");
-        x.innerHTML = name;
-        y = document.getElementById("author");
-        y.innerHTML = author;
-        z = document.getElementById("down");
-        z.innerHTML = link; 
+        parseHtml(value);
     }
     });
     
-    //return value;
 }
 
-/*
+
 function parseHtml(html)
 {
     var name = html.data.songList[0].songName;
@@ -40,30 +30,30 @@ function parseHtml(html)
     y.innerHTML = author;
     z = document.getElementById("down");
     z.innerHTML = link; 
-
 }
-
-*/
 
 function getMusicAddr(id)
-{        
-    var high_url = "http://music.baidu.com/data/music/fmlink?songIds=" + id + "&type=flac"; 
-    html = readHTML(high_url);
-    //parseHtml(html);         
+{
     
+
+
 }
 
-
-function getTopMusicAddr()
+function bdMusicDownload()
 {
-    var url = window.location.href;
-    var id = url.slice(28);
-    getMusicAddr(966991);
-
-    var new_url = "http://music.baidu.com/data/music/fmlink?songIds="+ id + "&type=flac";
+    //获得是插件的URL地址，为 chrome-extension://*.pupup.tml
+    //var url = window.location.href;
+    chrome.tabs.getSelected(null,function(thisTab){
+        var patt=new RegExp("http://music.baidu.com\/song\/[0-9]+");
+        var music_url = patt.exec(thisTab.url);
+        //从控制台看数据，string存储在music_url[0]里
+        //alert(music_url[0].substr(28));
+        var id = music_url[0].substr(28);
+        getMusicAddr(id);
+    });
         
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-      getTopMusicAddr();
+    bdMusicDownload();
 });
