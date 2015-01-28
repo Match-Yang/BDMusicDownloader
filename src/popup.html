@@ -32,7 +32,8 @@
   .download-info .hq,.download-info .hq-plus{display:inline-block;height:10px;margin-left:5px;}
   .download-info .hq{width:16px;background:url("//mu7.bdstatic.com/static/i/ayyGtRut.png") no-repeat;nd-position:-348px -108px;}
   .download-info .hq-plus{width:18px;background:url("//mu7.bdstatic.com/static/i/7XOjUsAD.png") no-repeat;background-position:-276px 0px;}
-  .download-info .is-three .high-rate{}.operation{padding:20px 0 0 50px;clear:both;}
+  .download-info .is-three .high-rate{}
+  .operation{padding:20px 0 0 50px;clear:both;}
   .download-info .btn-download .inner{font-size:14px;}
   .download-info .btn-download .icon{}
   .download-info .down-ad-notcopy{position:relative;z-index:100;padding:0;margin-top:-31px;*margin-top:-26px;_margin-top:-6px;}
@@ -74,98 +75,54 @@
   }
   .btn .txt{vertical-align:top;zoom:1;}
 
-  
-@media screen and (-webkit-min-device-pixel-ratio:0){
-	input[type="checkbox"],
-	select,
-	input[type="radio"] {
-		position: relative;
-		-webkit-appearance: none;
-		-webkit-user-select: none;
-		/*background-image: -webkit-linear-gradient(#EDEDED, #EDEDED 38%, #DEDEDE);*/
-		border: 1px solid rgba(0, 0, 0, 0.25);
-		border-radius: 2px;
-		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.75);
-		margin: 0 1px 0 0;
-	}
-  
-	input[type='checkbox'] {
-		bottom: 2px;
-		height: 15px;
-		vertical-align: middle;
-		width: 15px;
-	}
-	input[type='checkbox']:checked::before {
-		position: absolute;
-		left: 3px;
-		top: 6px;
-		content: '';
-		height: 2px;
-		background-color: #666;
-		width: 72%;
-		-webkit-transform: rotate(120deg);
-	}
-	input[type='checkbox']:checked::after {
-		position: absolute;
-		left: 2px;
-		top: 8px;
-		content: '';
-		height: 2px;
-		width: 4px;
-		background-color: #666;
-		-webkit-transform: rotate(-150deg);
-	}
+/* button   
+---------------------------------------------- */  
+.button {  
+    display: inline-block;  
+    zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */  
+    *display: inline;  
+    vertical-align: baseline;  
+    margin: 0 2px;  
+    outline: none;  
+    cursor: pointer;  
+    text-align: center;  
+    text-decoration: none;  
+    font: 14px/100% Arial, Helvetica, sans-serif;  
+    padding: .5em 2em .55em;  
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);  
+    -webkit-border-radius: .5em;   
+    -moz-border-radius: .5em;  
+    border-radius: .5em;  
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);  
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);  
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);  
+}  
 
-	input[type="radio"]{
-		border-radius: 100%;
-		bottom: 3px;
-		height: 15px;
-		vertical-align: middle;
-		width: 15px;
-	}
-	input[type='radio']:checked::before {
-		background-color: #377bcb;
-		border-radius: 100%;
-		bottom: 3px;
-		content: '';
-		display: block;
-		left: 3px;
-		position: absolute;
-		right: 3px;
-		top: 3px;
-	}
-	input[type='checkbox']:active,
-	select:active,
-	input[type='radio']:active {
-		background-image: -webkit-linear-gradient(#fcfcfc, #f8f8f8 38%, #e7e7e7);
-		box-shadow: none;
-		text-shadow: none;
-	}
-	select {
-		-webkit-appearance: none;
-		height: 38px;
-		-webkit-padding-end: 10px;
-		-webkit-padding-start: 6px;
-		/* OVERRIDE */
-		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAICAYAAAAbQcSUAAAAaUlEQVQoz2P4//8/A7UwdkEGhiggTsODo4g2LBEImJmZvwE1/UfHIHGQPNGGAbHCggULFrKxsf1ENgjEB4mD5EnxJoaByAZB5Yk3DNlAPj6+L8gGkWUYzMC3b982IRtEtmFQjaxYxDAwAGi4TwMYKNLfAAAAAElFTkSuQmCC'),-webkit-linear-gradient(#fcfcfc, #fcfcfc 38%, #fcfcfc);
-		background-position: right center;
-		background-repeat: no-repeat;
-	}
-	select:hover {
-		/* OVERRIDE */
-		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAICAYAAAAbQcSUAAAAaUlEQVQoz2P4//8/A7UwdkEGhiggTsODo4g2LBEImJmZvwE1/UfHIHGQPNGGAbHCggULFrKxsf1ENgjEB4mD5EnxJoaByAZB5Yk3DNlAPj6+L8gGkWUYzMC3b982IRtEtmFQjaxYxDAwAGi4TwMYKNLfAAAAAElFTkSuQmCC'),
-		-webkit-linear-gradient(#fbfbfb, #f5f5f5 38%, #f2f2f2);
-	}
-	select:active {
-		/* OVERRIDE */
-		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAICAYAAAAbQcSUAAAAaUlEQVQoz2P4//8/A7UwdkEGhiggTsODo4g2LBEImJmZvwE1/UfHIHGQPNGGAbHCggULFrKxsf1ENgjEB4mD5EnxJoaByAZB5Yk3DNlAPj6+L8gGkWUYzMC3b982IRtEtmFQjaxYxDAwAGi4TwMYKNLfAAAAAElFTkSuQmCC'),
-		-webkit-linear-gradient(#fcfcfc, #f8f8f8 38%, #e7e7e7);
-	}
-	select:disabled{
-		color: #999;
-		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAICAYAAAAbQcSUAAAAaUlEQVQoz2P4//8/A7UwdkEGhiggTsODo4g2LBEImJmZvwE1/UfHIHGQPNGGAbHCggULFrKxsf1ENgjEB4mD5EnxJoaByAZB5Yk3DNlAPj6+L8gGkWUYzMC3b982IRtEtmFQjaxYxDAwAGi4TwMYKNLfAAAAAElFTkSuQmCC'),-webkit-linear-gradient(#f8f8f8, #f8f8f8 38%, #f8f8f8);
-	}
-}
+/* color styles   
+---------------------------------------------- */  
+
+/* blue */  
+.blue {  
+    color: #d9eef7;  
+    border: solid 1px #0076a3;  
+    background: #0095cd;  
+    background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));  
+    background: -moz-linear-gradient(top,  #00adee,  #0078a5);  
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');  
+}  
+.blue:hover {  
+    background: #007ead;  
+    background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));  
+    background: -moz-linear-gradient(top,  #0095cc,  #00678e);  
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');  
+}  
+.blue:active {  
+    color: #80bed6;  
+    background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));  
+    background: -moz-linear-gradient(top,  #0078a5,  #00adee);  
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');  
+}  
+  
 </style>
   
 </head>
@@ -241,15 +198,14 @@
 <!-- rate end -->
 
 <div class="operation clearfix ">
-<a data-btndata="{&quot;ids&quot;:&quot;1028439&quot;,&quot;type&quot;:&quot;song&quot;}" href="#" id="128" class="btn btn-h btn-download login-download {&quot;ids&quot;:&quot;1028439&quot;,&quot;type&quot;:&quot;song&quot;} actived">
-<span class="inner">
-<i class="icon btn-icon-download-small"></i> 
-<span class="txt">下载</span>
-</span>
-</a>
+<input class="button blue" type="button" value="下载" />
 </div>
 </div>
 </div>
 
-</body
+
+
+
+</body>
+</html>
     
