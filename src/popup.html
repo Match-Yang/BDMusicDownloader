@@ -1,52 +1,255 @@
 <!doctype html>
 <html>
-	<head>
-    <title>百度无损音乐下载</title>
-    <style type="text/css">
-    .id{
-    color: #999;
-    width: 150px;
-    height: 120px;
-    font-size: 14px;
-    }
-    song{
-    color: #2d64b3;
-    width: 12px;
-    height: 12px;
-    font-size: 22px;
-    font-weight: bold;
-    }
-    name{
-    color: #2d64b3;
-    width: 12px;
-    height: 12px;
-    font-size: 14px;
-    }
-    rate{
-    color: #333;
-    font-size: 14px;
-    font-weight: bold;
-    width: 12px;
-    height: 12px;
-    
-    }
-    </style>
-    <script src="jquery.js"></script>
-    <script src="popup.js"></script>
-    </head>
-    
-    <body>
-        <div>
-          <span>歌曲：</span><p id="name"> </p>
-        </div>
-        <div>
-          <span>品质：</span>
-        </div>
-        <div>
-  	    <p id="standard"> </p>
-        <p id="high"> </p>
-        <p id="ultimate"></p>
-        <div >
-     </body>
-</html>
+<head>
+  <title>百度无损音乐下载插件</title>
+  <style>
+  .download-info{padding:25px 30px 20px;}
+  .download-info .song .fwb{font-size:22px;vertical-align:middle;}
+  .download-info .author_list{vertical-align:middle;}
+  .download-info .song,
+  .download-info .rate{font-size:14px;}
+  .download-info .main-links,.download-info .other-links{font-size:13px;margin-bottom:10px;}
+  .download-info .song .label{padding-top:0;}
+  .download-info .label{width:50px;float:left;padding-top:7px;}
+  .download-info .paid .label{width:65px;}
+  .download-info .main-links .label,.download-info .other-links .label{width:70px;}
+  .download-info .main-links ul,.download-info .other-links ul{overflow:hidden;word-break:break-all;}
+  .download-info .paid{font-size:16px;font-weight:bold;color:#f36565;}
+  .download-info .main-links li,.download-info .other-links li{padding-top:6px;}
+  .download-info .song{border-bottom:1px solid #d7e9f5;padding:10px 0 15px;}
+  .download-info .rate{position:relative;margin-bottom:10px;overflow:hidden;}
+  .download-info .rate .ul{overflow:hidden;zoom:1;margin-right:15px;color:#333;}
+  .download-info .rate .li{padding:10px 10px 10px 0;clear:both;}
+  .download-info .rate label{margin-right:15px;cursor:pointer;float:left;width:280px;}
+  .download-info .low-rate,.download-info .high-rate{position:relative;}
+  .download-info .high-rate .rate-title{font-weight:bold;}
+  .download-info .description{font-size:12px;color:#666;float:left;}
+  .download-info .is-three .description{}
+  .download-info .description a{display:inline-block;margin-left:10px;}
+  .download-info .description .power-icon-min{margin-right:5px;}
+  .download-info .rate .label{clear:both;}
+  .download-info .rate-title{display:inline-block;width:90px;margin-left:10px;}
+  .download-info .hq,.download-info .hq-plus{display:inline-block;height:10px;margin-left:5px;}
+  .download-info .hq{width:16px;background:url("//mu7.bdstatic.com/static/i/ayyGtRut.png") no-repeat;nd-position:-348px -108px;}
+  .download-info .hq-plus{width:18px;background:url("//mu7.bdstatic.com/static/i/7XOjUsAD.png") no-repeat;background-position:-276px 0px;}
+  .download-info .is-three .high-rate{}.operation{padding:20px 0 0 50px;clear:both;}
+  .download-info .btn-download .inner{font-size:14px;}
+  .download-info .btn-download .icon{}
+  .download-info .down-ad-notcopy{position:relative;z-index:100;padding:0;margin-top:-31px;*margin-top:-26px;_margin-top:-6px;}
+  .clearfix{
+  zoom: 1;
+  }
+  .c9{
+  color: #999;
+  }
+  .fwb{
+  font-weight: bold;
+  }
+  .c6{
+  color: #666;
+  }
+  .author_list{
+  color: #666;
+  }
+  .download-wrapper{
+  float: left;
+  padding-top: 10px;
+  }
+  .btn-h{height:28px;color:#fff;background:url("http://mu6.bdstatic.com/static/i/xj0S3qgS.png");
+  .btn-h .inner{height:28px;line-height:28px;background:url("http:http://mu6.bdstatic.com/static/i/xj0S3qgS.png") right -984px;}
+  .btn .inner{
+  position: relative;
+  float: left;
+  padding: 0 14px 0 px;
+  text-aligin: center;
+  background-position: right 0;
+  }
+  .btn .btn-icon-download-icon{left:-4px;width:16px;height:18px;margin-top:-10px;background-image:url("http://mu6.bdstatic.com/static/i/xj0S3qgS.png");background-position:-396px -348px;}
+  .btn .icon{position:relative;top:50%;float:left;width:7px;overflow:hidden;_margin-right:-3px;background-repeat:no-repeat;background-           position:0 0;vertical-align:middle;}
+  .btn i{
+  font-style: normal;
+  }
+  .icon{
+  display: inline-block;
+  }
+  .btn .txt{vertical-align:top;zoom:1;}
+
+  
+@media screen and (-webkit-min-device-pixel-ratio:0){
+	input[type="checkbox"],
+	select,
+	input[type="radio"] {
+		position: relative;
+		-webkit-appearance: none;
+		-webkit-user-select: none;
+		/*background-image: -webkit-linear-gradient(#EDEDED, #EDEDED 38%, #DEDEDE);*/
+		border: 1px solid rgba(0, 0, 0, 0.25);
+		border-radius: 2px;
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.75);
+		margin: 0 1px 0 0;
+	}
+  
+	input[type='checkbox'] {
+		bottom: 2px;
+		height: 15px;
+		vertical-align: middle;
+		width: 15px;
+	}
+	input[type='checkbox']:checked::before {
+		position: absolute;
+		left: 3px;
+		top: 6px;
+		content: '';
+		height: 2px;
+		background-color: #666;
+		width: 72%;
+		-webkit-transform: rotate(120deg);
+	}
+	input[type='checkbox']:checked::after {
+		position: absolute;
+		left: 2px;
+		top: 8px;
+		content: '';
+		height: 2px;
+		width: 4px;
+		background-color: #666;
+		-webkit-transform: rotate(-150deg);
+	}
+
+	input[type="radio"]{
+		border-radius: 100%;
+		bottom: 3px;
+		height: 15px;
+		vertical-align: middle;
+		width: 15px;
+	}
+	input[type='radio']:checked::before {
+		background-color: #377bcb;
+		border-radius: 100%;
+		bottom: 3px;
+		content: '';
+		display: block;
+		left: 3px;
+		position: absolute;
+		right: 3px;
+		top: 3px;
+	}
+	input[type='checkbox']:active,
+	select:active,
+	input[type='radio']:active {
+		background-image: -webkit-linear-gradient(#fcfcfc, #f8f8f8 38%, #e7e7e7);
+		box-shadow: none;
+		text-shadow: none;
+	}
+	select {
+		-webkit-appearance: none;
+		height: 38px;
+		-webkit-padding-end: 10px;
+		-webkit-padding-start: 6px;
+		/* OVERRIDE */
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAICAYAAAAbQcSUAAAAaUlEQVQoz2P4//8/A7UwdkEGhiggTsODo4g2LBEImJmZvwE1/UfHIHGQPNGGAbHCggULFrKxsf1ENgjEB4mD5EnxJoaByAZB5Yk3DNlAPj6+L8gGkWUYzMC3b982IRtEtmFQjaxYxDAwAGi4TwMYKNLfAAAAAElFTkSuQmCC'),-webkit-linear-gradient(#fcfcfc, #fcfcfc 38%, #fcfcfc);
+		background-position: right center;
+		background-repeat: no-repeat;
+	}
+	select:hover {
+		/* OVERRIDE */
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAICAYAAAAbQcSUAAAAaUlEQVQoz2P4//8/A7UwdkEGhiggTsODo4g2LBEImJmZvwE1/UfHIHGQPNGGAbHCggULFrKxsf1ENgjEB4mD5EnxJoaByAZB5Yk3DNlAPj6+L8gGkWUYzMC3b982IRtEtmFQjaxYxDAwAGi4TwMYKNLfAAAAAElFTkSuQmCC'),
+		-webkit-linear-gradient(#fbfbfb, #f5f5f5 38%, #f2f2f2);
+	}
+	select:active {
+		/* OVERRIDE */
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAICAYAAAAbQcSUAAAAaUlEQVQoz2P4//8/A7UwdkEGhiggTsODo4g2LBEImJmZvwE1/UfHIHGQPNGGAbHCggULFrKxsf1ENgjEB4mD5EnxJoaByAZB5Yk3DNlAPj6+L8gGkWUYzMC3b982IRtEtmFQjaxYxDAwAGi4TwMYKNLfAAAAAElFTkSuQmCC'),
+		-webkit-linear-gradient(#fcfcfc, #f8f8f8 38%, #e7e7e7);
+	}
+	select:disabled{
+		color: #999;
+		background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAICAYAAAAbQcSUAAAAaUlEQVQoz2P4//8/A7UwdkEGhiggTsODo4g2LBEImJmZvwE1/UfHIHGQPNGGAbHCggULFrKxsf1ENgjEB4mD5EnxJoaByAZB5Yk3DNlAPj6+L8gGkWUYzMC3b982IRtEtmFQjaxYxDAwAGi4TwMYKNLfAAAAAElFTkSuQmCC'),-webkit-linear-gradient(#f8f8f8, #f8f8f8 38%, #f8f8f8);
+	}
+}
+</style>
+  
+</head>
+
+<body>
+
+<div class="download-info clearfix">
+
+<!-- song -->
+<div class="song">
+<span class="label c9">歌曲：</span>
+<span class="fwb"><a target="_blank" title="别问" class="song-link-hook" href="/song/1028439">别问</a></span>
+&nbsp;&nbsp;
+<span class="c6">-</span>
+&nbsp;&nbsp;
+<span class="author_list" title="张学友">
+<a target="_blank" hidefocus="true" href="/artist/2507">张学友</a>
+</span>
+</div>
+<!-- song end -->
+ 
+<!-- download start -->
+<div class="download-wrapper" style="width:565px;">
+
+<!-- rate start-->
+<div class="rate">
+<span class="label c9">品质：</span>
+<!-- form -->
+<form action="" id="form">
+<div class="ul " style="margin-right:0px;">
+
+<!-- low rate -->
+<div class="low-rate">
+<div data-data="{&quot;rate&quot;:128,&quot;realRate&quot;:128}" class="li clearfix">
+<label hidefocus="true" for="bit128">
+<input class="down-radio" type="radio" checked="" name="chooserate" data-download="10" data-sid="1028439" data-format="mp3" data-rate="128" id="bit128">
+</input>
+<span class="rate-title">标准品质</span>
+<span class="c9">4.3M / 128kbps / mp3</span>
+</label>
+</div>
+</div>
+
+<!-- low rate end -->
+
+<!-- high rate -->
+<div class="high-rate">
+
+<div data-data="{&quot;rate&quot;:320,&quot;realRate&quot;:320}" class="li clearfix">
+<label hidefocus="true" for="bit320">
+<input class="down-radio" type="radio" name="chooserate" data-download="00" data-sid="1028439" data-format="mp3" data-rate="320" id="bit320">
+<span class="rate-title">超高品质</span>
+<span class="c9">10.6M / 320kbps / mp3</span>
+</label>
+</div>
+
+<div data-data="{&quot;rate&quot;:1000,&quot;realRate&quot;:885}" class="li clearfix">
+<label hidefocus="true" for="bit1000">
+<input class="down-radio" type="radio" name="chooserate" data-download="00" data-sid="1028439" data-format="flac" data-rate="885" id="bit1000">
+<span class="rate-title">无损品质</span>
+<span class="c9">29.4M / 885kbps / flac</span>
+</label>
+</div>
+
+</div>
+<!-- high rate end -->
+
+</div>
+</form>
+<!-- form end -->
+</div>
+
+<!-- rate end -->
+
+<div class="operation clearfix ">
+<a data-btndata="{&quot;ids&quot;:&quot;1028439&quot;,&quot;type&quot;:&quot;song&quot;}" href="#" id="128" class="btn btn-h btn-download login-download {&quot;ids&quot;:&quot;1028439&quot;,&quot;type&quot;:&quot;song&quot;} actived">
+<span class="inner">
+<i class="icon btn-icon-download-small"></i> 
+<span class="txt">下载</span>
+</span>
+</a>
+</div>
+</div>
+</div>
+
+</body
     
