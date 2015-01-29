@@ -26,24 +26,41 @@ function parseHtml(html)
     var name = html.data.songList[0].songName;
     var author = html.data.songList[0].artistName;
     var link = html.data.songList[0].showLink;
+    var size = html.data.songList[0].size/(1024*1024)
     var rate = html.data.songList[0].rate;
-    //alert(name);
+    var format = html.data.songList[0].format;
     if(rate < 320)
     {
-        standard = document.getElementById("name");
-        standard.innerHTML = name;
-        standard = document.getElementById("standard");
-        standard.innerHTML = "标准品质"+link;
+        songName = document.getElementById("songName");
+        songName.innerHTML = name;
+        artistName = document.getElementById("artistName");
+        artistName.innerHTML = author;
+        document.getElementById("standard").value = link;
+        format_s = document.getElementById("format_s");
+        format_s.innerHTML = size.toFixed(1)+"M"+" / "+rate+"kbps"+" / "+format;
     }
     else if(rate > 320)
     {
-        ultimate = document.getElementById("ultimate");
-        ultimate.innerHTML = "无损品质"+link;
+        //var txt1 = '<input id="ultimate" class="down-radio" type="radio" name="chooserate" value=""';
+        //$("ultimate_t").append(txt1);
+        document.getElementById("ultimate_t").innerHTML = '<input id="ultimate" class="down-radio" type="radio" name="chooserate" value="">'+'<span id="rate_u" class="rate-title"></span>'+'<span id="format_u" class="c9"></span>';
+
+        //"<input id=\"ultimate\" class=\"down-radio\" type=\"radio\" name=\"chooserate\" value=\"\">"
+        rate_u = document.getElementById("rate_u");
+        rate_u.innerHTML = "无损品质";
+        document.getElementById("ultimate").value = link;
+        format_u = document.getElementById("format_u");
+        format_u.innerHTML = size.toFixed(1)+"M"+" / "+rate+"kbps"+" / "+format;
     }
     else
     {
-        high = document.getElementById("high");
-        high.innerHTML = "超高品质"+link;
+        document.getElementById("high_t").innerHTML = '<input id="high" class="down-radio" type="radio" name="chooserate" value="">' + '<span id="rate_h" class="rate-title"></span>'+'<span id="format_h" class="c9"></span>';
+        rate_h = document.getElementById("rate_h");
+        rate_h.innerHTML = "超高品质";
+        document.getElementById("high").value = link;
+        format_h = document.getElementById("format_h");
+        format_h.innerHTML = size.toFixed(1)+"M"+" / "+rate+"kbps"+" / "+format;
+        //high.innerHTML = "超高品质"+link;
     }
 }
 
