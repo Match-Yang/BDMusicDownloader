@@ -13,6 +13,7 @@ function readHTML(new_url){
     },
     success : function(data)
     {
+        // 异步，此处解析
         temp = data;
         parseHtml(temp);
     }
@@ -41,11 +42,9 @@ function parseHtml(html)
     }
     else if(rate > 320)
     {
-        //var txt1 = '<input id="ultimate" class="down-radio" type="radio" name="chooserate" value=""';
-        //$("ultimate_t").append(txt1);
-        document.getElementById("ultimate_t").innerHTML = '<input id="ultimate" class="down-radio" type="radio" name="chooserate" value="">'+'<span id="rate_u" class="rate-title"></span>'+'<span id="format_u" class="c9"></span>';
+        // 添加标签时，我用转义字符没成功，于是用单引号把双引号括起来了
+        document.getElementById("ultimate_t").innerHTML = '<input id="ultimate" class="down-radio" type="radio" name="chooserate" value=""> </input>'+'<span id="rate_u" class="rate-title"></span>'+'<span id="format_u" class="c9"></span>';
 
-        //"<input id=\"ultimate\" class=\"down-radio\" type=\"radio\" name=\"chooserate\" value=\"\">"
         rate_u = document.getElementById("rate_u");
         rate_u.innerHTML = "无损品质";
         document.getElementById("ultimate").value = link;
@@ -54,18 +53,20 @@ function parseHtml(html)
     }
     else
     {
-        document.getElementById("high_t").innerHTML = '<input id="high" class="down-radio" type="radio" name="chooserate" value="">' + '<span id="rate_h" class="rate-title"></span>'+'<span id="format_h" class="c9"></span>';
+        document.getElementById("high_t").innerHTML = '<input id="high" type="radio" name="chooserate" value=""> </input>' + '<span id="rate_h" class="rate-title"></span>'+'<span id="format_h" class="c9"></span>';
         rate_h = document.getElementById("rate_h");
         rate_h.innerHTML = "超高品质";
         document.getElementById("high").value = link;
         format_h = document.getElementById("format_h");
         format_h.innerHTML = size.toFixed(1)+"M"+" / "+rate+"kbps"+" / "+format;
-        //high.innerHTML = "超高品质"+link;
     }
 }
 
 function getMusicAddr(id)
 {
+    //最多三种类型（可能四种，但是如果即存在128kbps的，也存在192kbps的
+    //此处取192kbps的为标准品质，但如果不存在192kbps的，此链接会自动取128kbps的
+    //使用ajax异步得到标准、超高、无损品质的属性值
     url_standard = "http://music.baidu.com/data/music/fmlink?songIds="+id+"&type=mp3&rate=192"; 
     readHTML(url_standard);
     url_high = "http://music.baidu.com/data/music/fmlink?songIds="+id+"&type=mp3&rate=320";
@@ -89,6 +90,7 @@ function bdMusicDownload()
         
 }
 
+// 入口
 document.addEventListener('DOMContentLoaded', function () {
     bdMusicDownload();
 });
