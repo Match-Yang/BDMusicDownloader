@@ -125,60 +125,67 @@
 <!-- rate start-->
 <div class="rate">
 <span class="label c9">品质：</span>
+
 <!-- form -->
 <form name="form" method="POST">
-<div class="ul" style="margin-right:0px;">
+
+<!-- ul start-->
+<div class="ul" style="margin-right:0px">
 
 <!-- low rate -->
 <div class="low-rate">
 <div class="li clearfix">
 <label id="standard_t" hidefocus="true">
+<!--
 <input id="standard" type="radio" checked="true" name="chooserate" value="">
 </input>
-<span id="rate_s" class="rate-title">标准品质</span>
+<span id="rate_s" class="rate-title"></span>
 <span id="format_s" class="c9"></span>
+-->
 </label>
 </div>
 </div>
-
 <!-- low rate end -->
 
 <!-- high rate -->
 <div class="high-rate">
-
 <div class="li clearfix">
 <label id="high_t" hidefocus="true">
-
+<!-- 
 <span id="rate_h" class="rate-title"></span>
 <span id="format_h" class="c9"></span>
+-->
 </label>
 </div>
 </div>
+<!-- high rate end -->
 
+<!-- ultimate rate -->
 <div class="high-rate">
 <div class="li clearfix">
 <label id="ultimate_t" hidefocus="true">
-
+<!-- 
 <span id="rate_u" class="rate-title"></span>
 <span id="format_u" class="c9"></span>
+-->
 </label>
 </div>
+</div>
+<!-- ultimate rate end -->
 
 </div>
-<!-- high rate end -->
-</div>
-<!-- </form> -->
-
+<!-- ul rate end -->
+</form>
 </div>
 
 <!-- rate end -->
 
-<!-- chrome插件现在的浏览器版本不允许在html文件里执行JS，所以去JS文件里做了事件监听 -->
+<!-- chrome插件现在的浏览器版本为了安全考虑，javascript必须与html分开存放，所以去JS文件里做了事件监听 -->
 
 <div class="operation clearfix ">
 <input id="button_id" class="button blue" type="button" value="下载" onclick="choice(this.form)" />
 </div>
-</form>
+<!-- </form> -->
 <!-- form end -->
 </div>
 </div>

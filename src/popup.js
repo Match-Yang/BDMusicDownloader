@@ -27,7 +27,7 @@ function parseHtml(html)
     var name = html.data.songList[0].songName;
     var author = html.data.songList[0].artistName;
     var link = html.data.songList[0].showLink;
-    var size = html.data.songList[0].size/(1024*1024)
+    var size = html.data.songList[0].size/(1024*1024);
     var rate = html.data.songList[0].rate;
     var format = html.data.songList[0].format;
     if(rate < 320)
@@ -36,6 +36,9 @@ function parseHtml(html)
         songName.innerHTML = name;
         artistName = document.getElementById("artistName");
         artistName.innerHTML = author;
+        document.getElementById("standard_t").innerHTML = '<input id="standard" type="radio" name="chooserate" value=""> </input>'+'<span id="rate_s" class="rate-title"></span>'+'<span id="format_s" class="c9"></span>';
+        rate_s = document.getElementById("rate_s");
+        rate_s.innerHTML = "标准品质";
         document.getElementById("standard").value = link;
         format_s = document.getElementById("format_s");
         format_s.innerHTML = size.toFixed(1)+"M"+" / "+rate+"kbps"+" / "+format;
@@ -43,7 +46,7 @@ function parseHtml(html)
     else if(rate > 320)
     {
         // 添加标签时，我用转义字符没成功，于是用单引号把双引号括起来了
-        document.getElementById("ultimate_t").innerHTML = '<input id="ultimate" class="down-radio" type="radio" name="chooserate" value=""> </input>'+'<span id="rate_u" class="rate-title"></span>'+'<span id="format_u" class="c9"></span>';
+        document.getElementById("ultimate_t").innerHTML = '<input id="ultimate" type="radio" name="chooserate" value=""> </input>'+'<span id="rate_u" class="rate-title"></span>'+'<span id="format_u" class="c9"></span>';
 
         rate_u = document.getElementById("rate_u");
         rate_u.innerHTML = "无损品质";
@@ -83,7 +86,6 @@ function bdMusicDownload()
         var patt=new RegExp("http://music.baidu.com\/song\/[0-9]+");
         var music_url = patt.exec(thisTab.url);
         //从控制台看数据，string存储在music_url[0]里
-        //alert(music_url[0].substr(28));
         var id = music_url[0].substr(28);
         getMusicAddr(id);
     });
@@ -94,14 +96,24 @@ function bdMusicDownload()
 function choice(my_form)
 {
     choice_id = document.forms[0].chooserate
-    for(i = 0; i < choice_id.length; ++i)
+    //单选框个数大于1时，是个数组，但是当为1时比较特殊，是个标签值，所以当为1时，判断未定义
+    //可单步调试，当走过此位置时，在控制台输入choice_id和choice_id.length查看属性值
+    if(typeof(choice_id.length) == "undefined")
     {
-        if(choice_id[i].checked)
+        //window.open(choice_id.value);
+        alert("Hello");
+    }
+    else
+    {
+        for(i = 0; i < choice_id.length; ++i)
         {
-            window.open(choice_id[i].value)
+            if(choice_id[i].checked)
+            {
+                //window.open(choice_id[i].value)
+                alert("World");
+            }
         }
     }
-
 }
 
 // 入口

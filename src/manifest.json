@@ -1,13 +1,18 @@
 {
     "name": "BDMusicDownloader",
     "description": "百度无损音乐下载插件",
-    "version": "1.0",
+    "version": "1.1",
+    "background":{"scripts": ["background.js"]},
     "permissions": ["tabs","http://music.baidu.com/song/*"],
     "content_security_policy": "script-src 'unsafe-eval'; object-src 'self'",
-    "browser_action":{
-        "default_title": "Love Music",
-        "default_icon": "icon.png",
+    "page_action": {
+        "default_icon": "icon-156.png",
+        "default_title": "Baidu Music Downloader",
         "default_popup": "popup.html"
+    },
+    "icons": {
+        "48": "icon-48.png",
+        "128": "icon-128.png"
     },
     "manifest_version": 2
 }
