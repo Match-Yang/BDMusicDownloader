@@ -6,6 +6,7 @@ function readHTML(new_url){
     value = $.ajax({
     type: "GET",
     url: new_url,
+    cache:false,
     dataType:'JSON',
     error: function(data)
     {
@@ -30,7 +31,9 @@ function parseHtml(html)
     var size = html.data.songList[0].size/(1024*1024);
     var rate = html.data.songList[0].rate;
     var format = html.data.songList[0].format;
-    if(rate < 320)
+    // rate > 1很重要，因为有些时候不存在无损音乐，可能rate就为0，会覆盖掉前面结果
+    // 自己埋了个坑，搞了一个多小时才发现此问题。
+    if(rate < 320 && rate > 1)
     {
         songName = document.getElementById("songName");
         songName.innerHTML = name;
@@ -46,7 +49,7 @@ function parseHtml(html)
     else if(rate > 320)
     {
         // 添加标签时，我用转义字符没成功，于是用单引号把双引号括起来了
-        document.getElementById("ultimate_t").innerHTML = '<input id="ultimate" type="radio" name="chooserate" value=""> </input>'+'<span id="rate_u" class="rate-title"></span>'+'<span id="format_u" class="c9"></span>';
+        document.getElementById("ultimate_t").innerHTML = '<input id="ultimate" type="radio" checked="true" name="chooserate" value=""> </input>'+'<span id="rate_u" class="rate-title"></span>'+'<span id="format_u" class="c9"></span>';
 
         rate_u = document.getElementById("rate_u");
         rate_u.innerHTML = "无损品质";
@@ -54,7 +57,7 @@ function parseHtml(html)
         format_u = document.getElementById("format_u");
         format_u.innerHTML = size.toFixed(1)+"M"+" / "+rate+"kbps"+" / "+format;
     }
-    else
+    else if(rate == 320)
     {
         document.getElementById("high_t").innerHTML = '<input id="high" type="radio" name="chooserate" value=""> </input>' + '<span id="rate_h" class="rate-title"></span>'+'<span id="format_h" class="c9"></span>';
         rate_h = document.getElementById("rate_h");
@@ -63,6 +66,7 @@ function parseHtml(html)
         format_h = document.getElementById("format_h");
         format_h.innerHTML = size.toFixed(1)+"M"+" / "+rate+"kbps"+" / "+format;
     }
+    return true;
 }
 
 function getMusicAddr(id)
@@ -100,8 +104,7 @@ function choice(my_form)
     //可单步调试，当走过此位置时，在控制台输入choice_id和choice_id.length查看属性值
     if(typeof(choice_id.length) == "undefined")
     {
-        //window.open(choice_id.value);
-        alert("Hello");
+        window.open(choice_id.value);
     }
     else
     {
@@ -109,8 +112,7 @@ function choice(my_form)
         {
             if(choice_id[i].checked)
             {
-                //window.open(choice_id[i].value)
-                alert("World");
+                window.open(choice_id[i].value)
             }
         }
     }
