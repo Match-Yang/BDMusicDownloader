@@ -101,6 +101,7 @@
 </style>
 <script src="jquery.js"></script>
 <script src="popup.js"></script>
+ 
 </head>
 
 <body>
@@ -166,16 +167,19 @@
 </div>
 <!-- high rate end -->
 </div>
-</form>
+<!-- </form> -->
 
-<!-- form end -->
 </div>
 
 <!-- rate end -->
 
+<!-- chrome插件现在的浏览器版本不允许在html文件里执行JS，所以去JS文件里做了事件监听 -->
+
 <div class="operation clearfix ">
-<input class="button blue" type="button" value="下载" />
+<input id="button_id" class="button blue" type="button" value="下载" onclick="choice(this.form)" />
 </div>
+</form>
+<!-- form end -->
 </div>
 </div>
 

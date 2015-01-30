@@ -90,7 +90,29 @@ function bdMusicDownload()
         
 }
 
+
+function choice(my_form)
+{
+    choice_id = document.forms[0].chooserate
+    for(i = 0; i < choice_id.length; ++i)
+    {
+        if(choice_id[i].checked)
+        {
+            window.open(choice_id[i].value)
+        }
+    }
+
+}
+
 // 入口
 document.addEventListener('DOMContentLoaded', function () {
     bdMusicDownload();
 });
+
+// 监听下载按钮是不是被click
+window.addEventListener("load", function(){
+  document.getElementById("button_id")
+          .addEventListener("click",choice,false);
+},false);
+
+
