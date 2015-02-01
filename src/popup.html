@@ -1,196 +1,90 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>百度无损音乐插件下载</title>
-  <style>
-  html{color:#333;font:12px/20px Arial;}
-  body {  
-    background: #ededed;  
-    width: auto;   
-    color: #999;  
-  }  
-  a{
-  color: #2d64b3;
-  text-decoration: none;
-  }
-  .download-info{padding:20px 25px 20px;}
-  .download-info .song{font-size:22px;vertical-align:middle;}
-  .fwb{font-size:22px;vertical-align:middle;color: #2d64b3;text-decoration: none}
-  .download-info .author_list{vertical-align:middle;color: #2d64b3;text-decoration: none}
-  .download-info .song,
-  .download-info .rate{font-size:15px;}
-  .download-info .song .label{padding-top:0;}
-  .download-info .label{width:50px;float:left;padding-top:7px;}
-  .download-info .song{border-bottom:1px solid #d7e9f5;padding:10px 0 15px;}
-  .download-info .rate{position:relative;margin-bottom:10px;overflow:hidden;}
-  .download-info .rate .ul{overflow:hidden;zoom:1;margin-right:15px;color:#333;}
-  .download-info .rate .li{padding:10px 10px 10px 0;clear:both;}
-  .download-info .rate label{margin-right:15px;cursor:pointer;float:left;width:285px;}
-  .download-info .low-rate,.download-info .high-rate{position:relative;}
-  .download-info .rate .label{clear:both;}
-  .download-info .rate-title{display:inline-block;width:90px;margin-left:10px;}
-  .operation{padding:20px 0 0 50px;clear:both;}
-  .clearfix{
-  zoom: 1;
-  }
-  .c9{
-  color: #999;
-  }
-  .fwb{
-  font-weight: bold;
-  }
-  .c6{
-  color: #666;
-  }
-  .author_list{
-  color: #666;
-  }
-  .download-wrapper{
-  float: left;
-  padding-top: 10px;
-  }
-
-/* button   
----------------------------------------------- */  
-.button {  
-    display: inline-block;  
-    zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */  
-    *display: inline;  
-    vertical-align: baseline;  
-    margin: 0 2px 1px;  
-    outline: none;  
-    cursor: pointer;  
-    text-align: center;  
-    text-decoration: none;  
-    font: 14px/100% Arial, Helvetica, sans-serif;  
-    padding: .5em 1.2em .5em;  
-    text-shadow: 0 1px 1px rgba(0,0,0,.3);  
-    -webkit-border-radius: .5em;   
-    -moz-border-radius: .5em;  
-    border-radius: .5em;  
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);  
-    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);  
-    box-shadow: 0 1px 2px rgba(0,0,0,.2);  
-}  
-
-/* color styles   
----------------------------------------------- */  
-
-/* blue */  
-.blue {  
-    color: #d9eef7;  
-    border: solid 1px #0076a3;  
-    background: #0095cd;  
-    background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));  
-    background: -moz-linear-gradient(top,  #00adee,  #0078a5);  
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');  
-}  
-.blue:hover {  
-    background: #007ead;  
-    background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));  
-    background: -moz-linear-gradient(top,  #0095cc,  #00678e);  
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0095cc', endColorstr='#00678e');  
-}  
-.blue:active {  
-    color: #80bed6;  
-    background: -webkit-gradient(linear, left top, left bottom, from(#0078a5), to(#00adee));  
-    background: -moz-linear-gradient(top,  #0078a5,  #00adee);  
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');  
-}  
-  
-</style>
-<script src="jquery.js"></script>
-<script src="popup.js"></script>
- 
+	<meta charset="utf-8">
+	<title>百度无损音乐下载插件</title>
+	<script src="jquery.js"></script>
+	<script src="popup.js"></script>
+	<link href="popup.css" type="text/css" rel="stylesheet"></link>
 </head>
-
 <body>
-
 <div class="download-info clearfix">
+	<!-- song -->
+	<div class="song">
+		<span class="label c9">歌曲：</span>
+		<span id="songName" class="fwb"></span>
+		&nbsp;&nbsp;
+		<span class="c6">-</span>
+		&nbsp;&nbsp;
+		<span id="artistName" class="author_list"></span>
+	</div>
+	<!-- song end -->
 
-<!-- song -->
-<div class="song">
-<span class="label c9">歌曲：</span>
-<span id="songName" class="fwb"></span>
-&nbsp;&nbsp;
-<span class="c6">-</span>
-&nbsp;&nbsp;
-<span id="artistName" class="author_list"></span>
+	<!-- download start -->
+	<div class="download-wrapper" style="width: 360px">
+		<!-- rate start-->
+		<div class="rate">
+			<span class="label c9">品质：</span>
+			<!-- form -->
+			<form name="form" method="POST">
+				<!-- ul start-->
+				<div class="ul" style="margin-right:0px">
+
+					<!-- low rate -->
+					<div class="low-rate">
+						<div class="li clearfix">
+							<label id="standard_t" hidefocus="true">
+							<!--
+							<input id="standard" type="radio" checked="true" name="chooserate" value="">
+							</input>
+							<span id="rate_s" class="rate-title"></span>
+							<span id="format_s" class="c9"></span>
+							-->
+							</label>
+						</div>
+					</div>
+					<!-- low rate end -->
+
+					<!-- high rate -->
+					<div class="high-rate">
+						<div class="li clearfix">
+							<label id="high_t" hidefocus="true">
+							<!--
+							<span id="rate_h" class="rate-title"></span>
+							<span id="format_h" class="c9"></span>
+							-->
+							</label>
+						</div>
+					</div>
+					<!-- high rate end -->
+
+					<!-- ultimate rate -->
+					<div class="high-rate">
+						<div class="li clearfix">
+							<label id="ultimate_t" hidefocus="true">
+							<!--
+							<span id="rate_u" class="rate-title"></span>
+							<span id="format_u" class="c9"></span>
+							-->
+							</label>
+						</div>
+					</div>
+					<!-- ultimate rate end -->
+				</div>
+				<!-- ul rate end -->
+			</form>
+		</div>
+
+		<!-- rate end -->
+
+		<!-- chrome插件现在的浏览器版本为了安全考虑，javascript必须与html分开存放，所以去JS文件里做了事件监听 -->
+
+		<div class="operation clearfix ">
+			<input id="button_id" class="button blue" type="button" value="下载" onclick="choice(this.form)" />
+		</div>
+		<!-- </form> -->
+		<!-- form end -->
+	</div>
 </div>
-<!-- song end -->
- 
-<!-- download start -->
-<div class="download-wrapper" style="width: 360px">
-
-<!-- rate start-->
-<div class="rate">
-<span class="label c9">品质：</span>
-
-<!-- form -->
-<form name="form" method="POST">
-
-<!-- ul start-->
-<div class="ul" style="margin-right:0px">
-
-<!-- low rate -->
-<div class="low-rate">
-<div class="li clearfix">
-<label id="standard_t" hidefocus="true">
-<!--
-<input id="standard" type="radio" checked="true" name="chooserate" value="">
-</input>
-<span id="rate_s" class="rate-title"></span>
-<span id="format_s" class="c9"></span>
--->
-</label>
-</div>
-</div>
-<!-- low rate end -->
-
-<!-- high rate -->
-<div class="high-rate">
-<div class="li clearfix">
-<label id="high_t" hidefocus="true">
-<!-- 
-<span id="rate_h" class="rate-title"></span>
-<span id="format_h" class="c9"></span>
--->
-</label>
-</div>
-</div>
-<!-- high rate end -->
-
-<!-- ultimate rate -->
-<div class="high-rate">
-<div class="li clearfix">
-<label id="ultimate_t" hidefocus="true">
-<!-- 
-<span id="rate_u" class="rate-title"></span>
-<span id="format_u" class="c9"></span>
--->
-</label>
-</div>
-</div>
-<!-- ultimate rate end -->
-
-</div>
-<!-- ul rate end -->
-</form>
-</div>
-
-<!-- rate end -->
-
-<!-- chrome插件现在的浏览器版本为了安全考虑，javascript必须与html分开存放，所以去JS文件里做了事件监听 -->
-
-<div class="operation clearfix ">
-<input id="button_id" class="button blue" type="button" value="下载" onclick="choice(this.form)" />
-</div>
-<!-- </form> -->
-<!-- form end -->
-</div>
-</div>
-
-
 </body>
 </html>
