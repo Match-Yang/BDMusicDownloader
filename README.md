@@ -13,7 +13,9 @@ src文件夹下是源代码，Linux与Mac系统下可以直接装src.crx文件�
 [http://armsword.com/2015/01/31/baidu-lossless-music-downloader/](http://armsword.com/2015/01/31/baidu-lossless-music-downloader/)
 
 ### 作者
-[armsword](http://armsword.com/)  [DreamShield](http://dreamshield.net/)
+[armsword](http://armsword.com/)
+
+[DreamShield](http://dreamshield.net/)
 
 
 
